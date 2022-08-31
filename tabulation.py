@@ -141,12 +141,12 @@ def can_construct(target: str, WordBank: list) -> bool:
     return tb[-1]
 
 
-print("<----CAN CONSTRUCT---->")
-print(can_construct('boyisgood', ['boy', 'is', 'good']))
-print(can_construct('', ['boy', 'is', 'good']))
-print(can_construct('boyisgood', ['boy', 'i', 'is', 'good']))
-print(can_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'er']))
-print(can_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'e']))
+# print("<----CAN CONSTRUCT---->")
+# print(can_construct('boyisgood', ['boy', 'is', 'good']))
+# print(can_construct('', ['boy', 'is', 'good']))
+# print(can_construct('boyisgood', ['boy', 'i', 'is', 'good']))
+# print(can_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'er']))
+# print(can_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'e']))
 
 
 def count_construct(target: str, WordBank: list) -> int:
@@ -164,27 +164,27 @@ def count_construct(target: str, WordBank: list) -> int:
     return tb[-1]
 
 
-print("<----COUNT CONSTRUCT---->")
-
-print(count_construct('boyisgood', ['boy', 'is', 'boyis', 'good', 'go', 'od']))
-print(count_construct('', ['boy', 'is', 'good']))
-print(count_construct('boyisgood', ['boy', 'i', 'is', 'good']))
-print(count_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'er']))
-print(count_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'e']))
-print(count_construct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
-    'e',
-    'ee',
-    'eee',
-    'eeee',
-    'eeeee',
-    'eeeeee',
-    'eeeeee',
-    'ef',
-    'f',
-    'eef',
-    'eeef',
-    'eeeef'
-]))
+# print("<----COUNT CONSTRUCT---->")
+#
+# print(count_construct('boyisgood', ['boy', 'is', 'boyis', 'good', 'go', 'od']))
+# print(count_construct('', ['boy', 'is', 'good']))
+# print(count_construct('boyisgood', ['boy', 'i', 'is', 'good']))
+# print(count_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'er']))
+# print(count_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'e']))
+# print(count_construct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
+#     'e',
+#     'ee',
+#     'eee',
+#     'eeee',
+#     'eeeee',
+#     'eeeeee',
+#     'eeeeee',
+#     'ef',
+#     'f',
+#     'eef',
+#     'eeef',
+#     'eeeef'
+# ]))
 
 
 def all_construct(target: str, WordBank: list):
@@ -210,14 +210,14 @@ def all_construct(target: str, WordBank: list):
     return tb[-1]
 
 
-print("<----ALL CONSTRUCT---->")
+# print("<----ALL CONSTRUCT---->")
 #
-print(all_construct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd', 'ef', 'c']))
-print(all_construct('boyisgood', ['boy', 'is', 'boyis', 'good', 'go', 'od']))
-print(all_construct('', ['boy', 'is', 'good']))
-print(all_construct('boyisgood', ['boy', 'is', 'good']))
-print(all_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'er']))
-print(all_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'e']))
+# print(all_construct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd', 'ef', 'c']))
+# print(all_construct('boyisgood', ['boy', 'is', 'boyis', 'good', 'go', 'od']))
+# print(all_construct('', ['boy', 'is', 'good']))
+# print(all_construct('boyisgood', ['boy', 'is', 'good']))
+# print(all_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'er']))
+# print(all_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'e']))
 # print(all_construct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
 #     'e',
 #     'ee',
@@ -232,3 +232,42 @@ print(all_construct('calmerboy', ['boy', 'i', 'is', 'good', 'calm', 'e']))
 #     'eeef',
 #     'eeeef'
 # ]))
+
+def longest_sub_sequence_length(ls:list): # Focusing on just length of longest for now
+    table = [1]*(len(ls))
+    # table[0] = 1 # If list is empty, longest subsequence includes one element i.e []
+    for i in range(len(ls)): # go throw table
+        for j in range(i+1, len(ls)): # Go through list
+            if ls[i] < ls[j]: # j corespondes to one index ahead than i as it access the list
+                # table[j] = max(table[i]+1, table[j])
+                table[j] = table[i]+1
+            else:
+                table[j] = table[i]
+
+    print(table)
+    return table[-1]
+
+# print(longest_sub_sequence_length([1, 2, 3, 4]))
+# print(longest_sub_sequence_length([1, 3, 2, 7, 4]))
+# print(longest_sub_sequence_length([3,1,8,2,5]))
+# print(longest_sub_sequence_length([5,2,8,6,3,6,9,5]))
+# print(longest_sub_sequence_length([]))
+
+
+# WE are given a list of boxes, each item being a tuple, containing L, W and H of the box
+# def highest_stack(ls):
+#     height = [0] * (len(ls)+1)
+#     print(height)
+#
+#     for i in range(len(ls)+1):
+#         for j in range(len(ls)+1): # not including i
+#             try:
+#                 if height[i+1] == 0: # ith box is the 1st in it's stack
+#                     height[i+1] = ls[i][2] # Adding height of selected box into table
+#                 if ls[i][0] > ls[j][0] and ls[i][1] > ls[j][1]:  # length and width of i box greater than j box
+#                     height[i+1] += (max(height[i+1], ls[j][2])) # Jth stacked on top of it
+#             except IndexError:
+#                 pass
+#     print(height)
+#
+# highest_stack([(2,3,3),(2,2,4),(4,4,2)])
